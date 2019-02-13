@@ -1,0 +1,215 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:Roboto Regular 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up i
+set $down k
+set $left j
+set $right semicolon
+
+set $mod Mod4
+set $TERM "urxvt"
+#bindcode 133 exec ~/.scripts/bar_toggle_key_release.sh
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+## Special Shift Keys
+bindsym $mod+Shift+c reload
+
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Shift+l exec "betterlockscreen -l"
+
+bindsym $mod+Shift+r exec i3-msg restart
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+Shift+x exec ~/.scripts/prompt.sh "Shutdown" "shutdown -h now"
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+Shift+minus move scratchpad
+
+## Special Keys
+bindsym $mod+Return exec $TERM
+
+bindsym $mod+Tab workspace next
+
+bindsym $mod+space focus mode_toggle
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+###### NORMAL KEY BINDINGS ######
+bindsym $mod+a focus parent
+
+#bindsym $mod+d exec dmenu_run -i -b -p 'Run' -fn 'Roboto Regular:pixelsize=14' -nb '#001520' -nf '#dce0e5' -sf '#dc322f' -sb '#0c1020'
+bindsym $mod+d exec rofi -show run
+
+bindsym $mod+e layout toggle split
+
+bindsym $mod+h split h
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+
+bindsym $mod+t exec $TERM
+
+bindsym $mod+v split v
+
+bindsym $mod+w layout tabbed
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+#Script binds
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Colors alias
+
+set_from_resource $backgroud background
+set_from_resource $foreground foreground
+set_from_resource $black color0
+set_from_resource $red color1
+set_from_resource $green color2
+set_from_resource $yellow color3
+set_from_resource $blue color4
+set_from_resource $magenta color5
+set_from_resource $cyan color6
+set_from_resource $white color7
+
+# Decorations colors
+
+# class                 border      backgr.     text    indicator   child_border
+ client.focused          $cyan    $magenta     $background   $cyan      $cyan
+ client.focused_inactive $black   $magenta     $background   $black     $black
+ client.unfocused        $black   $background  $green        $red       $black
+ client.urgent           $black   $red         $background   $red       $red
+ client.placeholder      $black   $background  $white        $black     $black
+
+new_window 1pixel
+for_window [class="^.*"] border pixel 2
+
+# toggle tiling / floating
+# focus the child container
+#bindsym $mod+d focus child
+
+# move the currently focused window to the scratchpad
+# switch to workspace
+bindsym $mod+1  workspace 1
+bindsym $mod+2  workspace 2
+bindsym $mod+3  workspace 3
+bindsym $mod+4  workspace 4
+bindsym $mod+5  workspace 5
+bindsym $mod+6  workspace 6
+bindsym $mod+7  workspace 7
+bindsym $mod+8  workspace 8
+bindsym $mod+9  workspace 9
+bindsym $mod+0  workspace 0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+gaps inner 6
+gaps outer 0
+
+#bar {
+#        status_command i3status
+#}
+
+exec xfconfd
+exec xfsettingsd
+exec xfce4-volumed
+exec xfce4-power-manager
+
+exec xrdb $HOME/.Xresources &
+exec --no-startup-id nitrogen --restore &
+exec --no-startup-id i3-msg 'workspace 4; exec $TERM -e htop' &
+exec --no-startup-id i3-msg 'workspace 3; exec $TERM ' &
+exec --no-startup-id i3-msg 'workspace 5; exec slack' &
+exec --no-startup-id compton -CG --unredir-if-possible &
+
+# MY SCRIPTS
+exec_always --no-startup-id $HOME/.scripts/polybar.sh &
+exec_always --no-startup-id $HOME/.scripts/escape.sh '175' &
+
+
