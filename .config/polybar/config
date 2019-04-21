@@ -46,18 +46,19 @@ border-color = ${c.cyan}
 padding-left = 1
 padding-right = 1
 
+; ttf-font-aweesome
 font-0 = roboto:pixelsize=12;1
 font-1 = inconsolata:weight=220:pixelsize=12;1
 font-2 = inconsolata:weight=100:size=12;1
-font-3 = FontAwesome:weight=220:size=11;1
-font-4 = noto sans symbols:weight=200:size=15;1
-font-5 = baekmuk gulim:weight=110:size=11;1
+font-3 = Font Awesome 5 Free:style=Solid:weight=100:size=11;1
+font-4 = menlo for powerline:weight=100:size=15;1
+font-5 = Font Awesome 5 Brands:weight=110:size=11;1
 
 modules-left = i3 xwindow
 modules-center = date
 modules-right = filesystem pulseaudio cpu-cores memory eth
 
-;separator =
+separator =  |
 
 tray-position = right
 tray-padding = 2
@@ -72,9 +73,9 @@ tray-padding = 2
 [module/cpu-cores]
 type = internal/cpu
 interval = 1
-format =  <label>  <ramp-coreload>
-format-padding = 1
-label =%{T2} [%percentage%%]
+format =<label>  <ramp-coreload>
+format-padding = 2
+label =%{T2}[%percentage%%]
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 2
@@ -114,6 +115,7 @@ format-padding = 2
 [module/filesystem]
 type = internal/fs
 interval = 25
+format-mounted-padding = 2
 
 mount-0 = /
 
@@ -230,14 +232,16 @@ bar-used-empty-foreground = ${c.magenta}
 
 [module/eth]
 type = internal/network
-interface = enp3s0
+interface = enp2s0
 interval = 3.0
 
+format-connected-padding = 2
 format-connected = <label-connected>
 format-connected-underline = ${c.green}
-label-connected = %{T4} %downspeed%  %upspeed% %{T2}
+label-connected-font = 4
+label-connected =  %downspeed%  %upspeed%
 
-format-disconnected =  %{T4} DISCONNECTED
+format-disconnected =  %{T6} DISCONNECTED
 
 ;==========================================================
 
@@ -253,19 +257,20 @@ time-alt = %H:%M
 
 format-prefix-foreground = ${c.foreground}
 
-label = %{T4} %date% %time%
+label = %{T2} %date% %time%
 
 ;==========================================================
 
 [module/pulseaudio]
 type = internal/pulseaudio
+format-volume-padding = 2
 
 format-volume = <label-volume>
-label-volume = %{T4}VOL %percentage%%
+label-volume = %{T2}VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 label-volume-background =
 
-label-muted = %{T4} MUTED*
+label-muted = %{T2} MUTED*
 label-muted-foreground = #666
 
 bar-volume-width = 10
