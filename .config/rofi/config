@@ -1,0 +1,33 @@
+!rofi.theme: /usr/share/rofi/themes/android_notification.rasi
+rofi.font: Inconsolata 17
+rofi.hide-scrollbar: true
+rofi.lines: 5
+rofi.width: 100
+rofi.padding: 800
+rofi.bw: 0
+!rofi.fullscreen: true
+rofi.separator-style: solid
+rofi.eh : 1
+
+
+
+
+!Colors
+rofi.color-enabled: true
+
+
+!		    background		border		separator
+!rofi.color-window: argb:03292d37,	#292d37,	argb:ff1798a0,
+
+! 		    background, 	foreground	background alt	      highlight background   highlight foreground
+!rofi.color-normal: argb:00292d37,	#ffffff,	argb:00292d00,	      argb:00292d37,	     #1798a0
+!rofi.color-active: argb:00292d37,	#ffffff,	argb:00292d37,	      argb:00292d37,	     #ffffff
+!rofi.color-urgent: argb:00292d37,       #ffffff, 	argb:00292d37,	      argb:00292d37,	     #ffffff
+
+set_from_resource $cyan color6
+!                  'background', 'border', 'separator'
+rofi.color-window: argb:482d303b, #7c8389, #0080ff
+! State:           'bg',           'fg',     'bgalt',        'hlbg', 	  'hlfg'
+rofi.color-normal: argb:031d1f21, #f3f4f5, argb:031d1f21, argb:031d1f21, #0080ff
+rofi.color-urgent: argb:031d1f21, #f3f4f5, argb:bc303541, argb:031d1f21, #9575cd
+rofi.color-active: argb:031d1f21, #f3f4f5, argb:031d1f21, argb:031d1f21, #9575cd 

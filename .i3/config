@@ -35,16 +35,26 @@ set $mod Mod4
 set $TERM "termite"
 
 # Workspaces
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: "
-set $workspace10 "10: "
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+#set $workspace1 "1: "
+#set $workspace2 "2: "
+#set $workspace3 "3: "
+#set $workspace4 "4: "
+#set $workspace5 "5: "
+#set $workspace6 "6: "
+#set $workspace7 "7: "
+#set $workspace8 "8: "
+#set $workspace9 "9: "
+#set $workspace10 "10: "
 
 #bindcode 133 exec ~/.scripts/bar_toggle_key_release.sh
 # use Mouse+$mod to drag floating windows to their wanted position
@@ -55,13 +65,9 @@ bindsym $mod+Shift+c reload
 
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+Shift+l exec "betterlockscreen -l"
-
 bindsym $mod+Shift+r exec i3-msg restart
 
 bindsym $mod+Shift+q kill
-
-bindsym $mod+Shift+x exec ~/.scripts/prompt.sh "Shutdown" "shutdown -h now"
 
 bindsym $mod+Shift+space floating toggle
 
@@ -209,21 +215,25 @@ gaps outer 0
 #        status_command i3status
 #}
 
-exec xfconfd
-exec xfsettingsd
-exec xfce4-volumed
-exec xfce4-power-manager
-
 exec xrdb $HOME/.Xresources &
+
+
+# MY COMMANDS
+set $shutdown "sudo shutdown now"
+set $restart "sudo reboot now"
+
+bindsym $mod+Shift+l exec "betterlockscreen -l"
+bindsym $mod+Shift+x exec $HOME/.scripts/rofi_menu.sh "Power menu" "shutdown" "restart" $shutdown $restart
+bindsym --whole-window button8 kill
+
+new_window pixel 0
 exec --no-startup-id nitrogen --restore &
-exec --no-startup-id i3-msg 'workspace 4; exec $TERM -e htop' &
-exec --no-startup-id i3-msg 'workspace 3; exec $TERM ' &
-exec --no-startup-id i3-msg 'workspace 5; exec slack' &
-exec --no-startup-id compton -CG --unredir-if-possible &
+exec --no-startup-id compton -bCG --unredir-if-possible &
 
 # MY SCRIPTS
-#exec_always --no-startup-id $HOME/.scripts/polybar.sh &
-#exec_always --no-startup-id $HOME/.scripts/escape.sh '175' &
+exec --no-startup-id setxkbmap -model pc105 -layout es,us -option grp:ctrl_alt_toggle &
+exec_always --no-startup-id $HOME/.scripts/polybar.sh &
+exec_always --no-startup-id $HOME/.scripts/escape.sh '175' &
 
 ## Pulse Audio controls
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -231,8 +241,8 @@ exec --no-startup-id compton -CG --unredir-if-possible &
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 #
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec backlight_up.sh # increase screen brightness
-bindsym XF86MonBrightnessDown exec backlight_down.sh # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec backlight_up.sh # increase screen brightness
+#bindsym XF86MonBrightnessDown exec backlight_down.sh # decrease screen brightness
 #
 ## Media player controls
 #bindsym XF86AudioPlay exec playerctl play
